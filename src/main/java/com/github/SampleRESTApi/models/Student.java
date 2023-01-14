@@ -2,26 +2,54 @@ package com.github.SampleRESTApi.models;
 
 import jakarta.persistence.*;
 
-
-import javax.annotation.processing.Generated;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "Student")
+@Table(
+        name = "student"
+)
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(
+            name = "id",
+            updatable = false
+    )
     private String id;
-    @Column
+    @Column(
+            name = "first_name",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String firstName;
-    @Column
+    @Column(
+            name = "middle_name",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String middleName;
-    @Column
+    @Column(
+            name = "last_name",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String lastName;
-    @Column
+    @Column(
+            name = "age",
+            nullable = false
+    )
     private int age;
-    @Column
+    @Column(
+            name = "year_level",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String yearLevel;
-    @Column
+    @Column(
+            name = "section",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String section;
 
     public String getId() {
