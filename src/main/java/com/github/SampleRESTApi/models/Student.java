@@ -52,6 +52,18 @@ public class Student {
     )
     private String section;
 
+    public Student() {
+    }
+
+    public Student(String firstName, String middleName, String lastName, int age, String yearLevel, String section) {
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.age = age;
+        this.yearLevel = yearLevel;
+        this.section = section;
+    }
+
     public String getId() {
         return id;
     }

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Students</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row m-3 mb-5">
+            <h2 class="me-auto">List of Students</h2>
+            <button id="addBtn" class="btn btn-success">Add Student</button>
+        </div>
+        <table id="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Middle Name</th>
+                    <th>Last Name</th>
+                    <th>Age</th>
+                    <th>Year Level</th>
+                    <th>Section</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+        </table>
+        <!-- Add Modal -->
+        <form id="addForm">
+            <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModal" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="addModalTitle">Add Student</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-control" name="firstName"
+                                    placeholder="Enter the student's first name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Middle Name</label>
+                                <input type="text" class="form-control" name="middleName"
+                                    placeholder="Enter the student's middle name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-control" name="lastName"
+                                    placeholder="Enter the student's last name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Age</label>
+                                <input type="number" class="form-control" name="age" min-value="0"
+                                    placeholder="Enter the student's age" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Year Level</label>
+                                <input type="text" class="form-control" name="yearLevel"
+                                    placeholder="Enter the student's year level" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Section</label>
+                                <input type="text" class="form-control" name="section"
+                                    placeholder="Enter the student's section" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" tabindex="-1">
+                                Cancel
+                            </button>
+                            <button id="addSubmit" type="submit" class="btn btn-primary" tabindex="-1">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- Delete Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="deleteModalTitle"></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">Are you sure you want to delete this student?</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" tabindex="-1">
+                            Cancel
+                        </button>
+                        <button id="deleteSubmit" type="submit" class="btn btn-danger" tabindex="-1">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Edit Modal -->
+    <form id="editForm">
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="editModalTitle">Add Student</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">First Name</label>
+                            <input type="text" class="form-control" name="firstName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Middle Name</label>
+                            <input type="text" class="form-control" name="middleName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" class="form-control" name="lastName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Age</label>
+                            <input type="number" class="form-control" name="age" min-value="0" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Year Level</label>
+                            <input type="text" class="form-control" name="yearLevel" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Section</label>
+                            <input type="text" class="form-control" name="section" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" tabindex="-1">
+                            Cancel
+                        </button>
+                        <button id="editSubmit" type="submit" class="btn btn-success" tabindex="-1">
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- Toast -->
+    <div class="toast-container position-absolute p-3" id="toastPlacement">
+        <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
+            <div class="toast-header">
+                <img src="icons8-notification-bell-64.png" class="rounded me-2" alt="Bell Icon"
+                    style="width:15px; height: 15px;">
+                <strong class="me-auto">Notification</strong>
+                <small class="text-muted">Just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div id="toast-message" class="toast-body"></div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="student-script.js"></script>
+</body>
+
+</html>
